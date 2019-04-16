@@ -1,6 +1,6 @@
 
 <p align="center">
-    <img src="https://www.hackingwithswift.com/files/sourceful/logo.png" alt=“Sourceful logo" width=“722” maxHeight=“155” />
+    <img src="https://www.hackingwithswift.com/files/sourceful/logo.png" alt=“Sourceful logo" width=“550” maxHeight=“118” />
 </p>
 
 <p align="center">
