@@ -27,7 +27,10 @@ public class SwiftLexer: SourceCodeRegexLexer {
 		
 		generators.append(regexGenerator("(?<=(\\s|\\[|,|:))(\\d|\\.|_)+", tokenType: .number))
 		
-		generators.append(regexGenerator("\\.[A-Za-z_]+\\w*", tokenType: .identifier))
+		// highlight dot syntax
+		generators.append(regexGenerator(##"\.\b[A-Za-z_]+\w*"##, tokenType: .identifier))
+		// don't highlight the dot though
+		generators.append(regexGenerator(##"\."##, tokenType: .plain))
 		
 		let keywords = "as associatedtype break case catch class continue convenience default defer deinit else enum extension fallthrough false fileprivate final for func get guard if import in init inout internal is lazy let mutating nil nonmutating open operator override private protocol public repeat required rethrows return required self set static struct subscript super switch throw throws true try typealias unowned var weak where while".components(separatedBy: " ")
 		
@@ -37,6 +40,9 @@ public class SwiftLexer: SourceCodeRegexLexer {
 		
 		generators.append(keywordGenerator(stdlibIdentifiers, tokenType: .identifier))
 		
+		// Types
+		generators.append(regexGenerator(##"\b[A-Z]\w+"##, tokenType: .identifier))
+
 		// Line comment
 		generators.append(regexGenerator("//(.*)", tokenType: .comment))
 		

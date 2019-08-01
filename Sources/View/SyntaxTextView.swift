@@ -497,10 +497,6 @@ open class SyntaxTextView: View {
 
             let token = cachedToken.token
 
-            if token.isPlain {
-                continue
-            }
-
             let range = cachedToken.nsRange
 
             if token.isEditorPlaceholder {
