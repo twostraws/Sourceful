@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'Sourceful'
-  s.version = '0.2.0'
+  s.version = '0.3.0'
   s.license = 'MIT'
   s.summary = 'A native source editor for iOS and macOS.'
   s.homepage = 'https://github.com/twostraws/Sourceful'
