@@ -23,8 +23,6 @@ public class ShellLexer: SourceCodeRegexLexer {
         
         generators.append(keywordGenerator(keywords, tokenType: .keyword))
         
-        generators.append(regexGenerator(editorPlaceholderPattern, tokenType: .editorPlaceholder))
-        
         return generators.compactMap( { $0 })
     }()
     
