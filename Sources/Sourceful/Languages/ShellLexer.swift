@@ -17,11 +17,11 @@ public class ShellLexer: SourceCodeRegexLexer {
         
         var generators = [TokenGenerator?]()
         
-        generators.append(regexGenerator("#[\\s\\S]*?$", tokenType: .comment))
-        
         let keywords = "break|case|continue|do|done|elif|else|esac|eval|export|fi|for|function|if|in|local|return|set|then|unset|until|while".components(separatedBy: "|")
         
         generators.append(keywordGenerator(keywords, tokenType: .keyword))
+        
+        generators.append(regexGenerator("#(.*)", tokenType: .comment))
         
         return generators.compactMap( { $0 })
     }()
