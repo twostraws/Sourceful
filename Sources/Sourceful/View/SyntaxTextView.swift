@@ -248,9 +248,16 @@ open class SyntaxTextView: View {
         textView.keyboardAppearance = .dark
 
         self.clipsToBounds = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
 
         #endif
 
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     #if os(macOS)
@@ -328,9 +335,26 @@ open class SyntaxTextView: View {
         self.textView.invalidateCachedParagraphs()
         self.textView.setNeedsDisplay()
     }
+    
+    @objc func keyboardWillAppear(_ notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let insets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+            contentInset = insets
+            
+            layoutIfNeeded()
+        }
+    }
+    
+    @objc func keyboardWillDisappear(_ notification: NSNotification) {
+        
+        if let _ = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            contentInset = UIEdgeInsets.zero
+        }
+    }
 
     #endif
-
+    
     public var theme: SyntaxColorTheme? {
         didSet {
             guard let theme = theme else {
