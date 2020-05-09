@@ -559,4 +559,8 @@ open class SyntaxTextView: View {
         textStorage.endEditing()
     }
 
+    
+    public func forceTextUpdate() {
+        self.didUpdateText()
+    }
 }
