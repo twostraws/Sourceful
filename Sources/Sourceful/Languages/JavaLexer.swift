@@ -1,7 +1,7 @@
 //
 //  JavaLexer.swift
 //
-//
+//  Based on SwiftLexer.swift by Louis D'hauwe.
 //  Created by Skrypchenko Nikita on 26.07.2020.
 //
 
