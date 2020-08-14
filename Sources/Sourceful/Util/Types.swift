@@ -12,7 +12,7 @@ import Foundation
 	
 	import AppKit
 	
-	public typealias View			= NSView
+	public typealias _View			= NSView
 	public typealias ViewController = NSViewController
 	public typealias Window			= NSWindow
 	public typealias Control		= NSControl
@@ -31,7 +31,7 @@ import Foundation
 	
 	import UIKit
 	
-	public typealias View			= UIView
+	public typealias _View			= UIView
 	public typealias ViewController = UIViewController
 	public typealias Window			= UIWindow
 	public typealias Control		= UIControl

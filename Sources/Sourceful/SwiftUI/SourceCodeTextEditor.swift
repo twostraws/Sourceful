@@ -5,15 +5,21 @@
 //
 
 import Foundation
-import Sourceful
+
+#if canImport(SwiftUI)
+
 import SwiftUI
 
 #if os(macOS)
+
 public typealias _ViewRepresentable = NSViewRepresentable
+
 #endif
 
 #if os(iOS)
+
 public typealias _ViewRepresentable = UIViewRepresentable
+
 #endif
 
 
@@ -71,6 +77,24 @@ public struct SourceCodeTextEditor: _ViewRepresentable {
         Coordinator(self)
     }
     
+    #if os(iOS)
+    public func makeUIView(context: Context) -> SyntaxTextView {
+        let wrappedView = SyntaxTextView()
+        wrappedView.delegate = context.coordinator
+        wrappedView.theme = custom.theme()
+//        wrappedView.contentTextView.insertionPointColor = custom.insertionPointColor()
+        
+        context.coordinator.wrappedView = wrappedView
+        context.coordinator.wrappedView.text = text
+        
+        return wrappedView
+    }
+    
+    public func updateUIView(_ view: SyntaxTextView, context: Context) {
+    }
+    #endif
+    
+    #if os(macOS)
     public func makeNSView(context: Context) -> SyntaxTextView {
         let wrappedView = SyntaxTextView()
         wrappedView.delegate = context.coordinator
@@ -85,6 +109,9 @@ public struct SourceCodeTextEditor: _ViewRepresentable {
     
     public func updateNSView(_ view: SyntaxTextView, context: Context) {
     }
+    #endif
+    
+
 }
 
 extension SourceCodeTextEditor {
@@ -115,3 +142,5 @@ extension SourceCodeTextEditor {
         }
     }
 }
+
+#endif

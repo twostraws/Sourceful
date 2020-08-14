@@ -47,7 +47,7 @@ struct ThemeInfo {
 }
 
 @IBDesignable
-open class SyntaxTextView: View {
+open class SyntaxTextView: _View {
 
     var previousSelectedRange: NSRange?
 
