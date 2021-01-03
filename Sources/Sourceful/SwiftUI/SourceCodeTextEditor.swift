@@ -61,7 +61,7 @@ public struct SourceCodeTextEditor: _ViewRepresentable {
     
     public init(
         text: Binding<String>,
-        cusotmization: Customization = Customization(
+        customization: Customization = Customization(
             didChangeText: {_ in },
             insertionPointColor: { Sourceful.Color.white },
             lexerForSource: { _ in SwiftLexer() },
@@ -70,7 +70,7 @@ public struct SourceCodeTextEditor: _ViewRepresentable {
         )
     ) {
         self._text = text
-        self.custom = cusotmization
+        self.custom = customization
     }
     
     public func makeCoordinator() -> Coordinator {
