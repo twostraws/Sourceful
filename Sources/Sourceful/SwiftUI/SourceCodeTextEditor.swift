@@ -93,6 +93,9 @@ public struct SourceCodeTextEditor: _ViewRepresentable {
     }
     
     public func updateUIView(_ view: SyntaxTextView, context: Context) {
+        if shouldBecomeFirstResponder {
+            view.becomeFirstResponder()
+        }
     }
     #endif
     
@@ -110,9 +113,7 @@ public struct SourceCodeTextEditor: _ViewRepresentable {
     }
     
     public func updateNSView(_ view: SyntaxTextView, context: Context) {
-        if shouldBecomeFirstResponder {
-            view.becomeFirstResponder()
-        }
+       
     }
     #endif
     
