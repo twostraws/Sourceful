@@ -56,7 +56,7 @@ public struct SourceCodeTextEditor: _ViewRepresentable {
     }
     
     @Binding private var text: String
-    
+    private var shouldBecomeFirstResponder: Bool
     private var custom: Customization
     
     public init(
@@ -67,10 +67,12 @@ public struct SourceCodeTextEditor: _ViewRepresentable {
             lexerForSource: { _ in SwiftLexer() },
             textViewDidBeginEditing: { _ in },
             theme: { DefaultSourceCodeTheme() }
-        )
+        ),
+        shouldBecomeFirstResponder: Bool = false
     ) {
         self._text = text
         self.custom = customization
+        self.shouldBecomeFirstResponder = shouldBecomeFirstResponder
     }
     
     public func makeCoordinator() -> Coordinator {
@@ -91,6 +93,9 @@ public struct SourceCodeTextEditor: _ViewRepresentable {
     }
     
     public func updateUIView(_ view: SyntaxTextView, context: Context) {
+        if shouldBecomeFirstResponder {
+            view.becomeFirstResponder()
+        }
     }
     #endif
     
@@ -108,6 +113,7 @@ public struct SourceCodeTextEditor: _ViewRepresentable {
     }
     
     public func updateNSView(_ view: SyntaxTextView, context: Context) {
+       
     }
     #endif
     

@@ -272,6 +272,9 @@ open class SyntaxTextView: _View {
 
     #if os(iOS)
 
+    open override func becomeFirstResponder() -> Bool {
+        return textView.becomeFirstResponder()
+    }
     override open var isFirstResponder: Bool {
         return textView.isFirstResponder
     }
