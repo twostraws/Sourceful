@@ -245,8 +245,6 @@ open class SyntaxTextView: _View {
             textView.smartInsertDeleteType = .no
         }
 
-        textView.keyboardAppearance = .dark
-
         self.clipsToBounds = true
 
         #endif
