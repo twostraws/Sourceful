@@ -2,11 +2,13 @@ import XCTest
 @testable import Sourceful
 
 final class SourcefulTests: XCTestCase {
+    let testDelegate = TestDelegate(didChangeText: {
+        XCTFail("Delegate's didChangeText should not be called when text is set programmatically.")
+    })
+    
     func testSyntaxTextViewDelegateDidChangeTextShouldNotBeCalledWhenSetProgrammatically() {
         let textView = SyntaxTextView()
-        textView.delegate = TestDelegate(didChangeText: {
-            XCTFail("Delegate's didChangeText should not be called when text is set programmatically.")
-        })
+        textView.delegate = testDelegate
         textView.text = "My new text"
     }
 
