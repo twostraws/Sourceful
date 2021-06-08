@@ -15,7 +15,7 @@ import CoreGraphics
 	import UIKit
 #endif
 
-protocol InnerTextViewDelegate: class {
+protocol InnerTextViewDelegate: AnyObject {
 	func didUpdateCursorFloatingState()
 }
 
