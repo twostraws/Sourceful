@@ -136,7 +136,13 @@ extension SyntaxTextView {
 		}
 		
 	}
-	
+    
+    func didUpdateText() {
+        
+        refreshColors()
+        delegate?.didChangeText(self)
+        
+    }
 }
 
 #if os(macOS)
@@ -156,24 +162,20 @@ extension SyntaxTextView {
 			}
 			
 			didUpdateText()
-			
 		}
-		
-		func didUpdateText() {
-			
-			self.invalidateCachedTokens()
-			self.textView.invalidateCachedParagraphs()
-			
-			if let delegate = delegate {
-				colorTextView(lexerForSource: { (source) -> Lexer in
-					return delegate.lexerForSource(source)
-				})
-			}
-			
-			wrapperView.setNeedsDisplay(wrapperView.bounds)
-			self.delegate?.didChangeText(self)
-			
-		}
+        
+        func refreshColors() {
+            self.invalidateCachedTokens()
+            self.textView.invalidateCachedParagraphs()
+            
+            if let delegate = delegate {
+                colorTextView(lexerForSource: { (source) -> Lexer in
+                    return delegate.lexerForSource(source)
+                })
+            }
+            
+            wrapperView.setNeedsDisplay(wrapperView.bounds)
+        }
 		
 		open func textViewDidChangeSelection(_ notification: Notification) {
 			
@@ -205,7 +207,7 @@ extension SyntaxTextView {
 			
 		}
 		
-		func didUpdateText() {
+		func refreshColors() {
 			
 			self.invalidateCachedTokens()
 			self.textView.invalidateCachedParagraphs()
@@ -215,9 +217,6 @@ extension SyntaxTextView {
 				colorTextView(lexerForSource: { (source) -> Lexer in
 					return delegate.lexerForSource(source)
 				})
-				
-				delegate.didChangeText(self)
-
 			}
 			
 		}
