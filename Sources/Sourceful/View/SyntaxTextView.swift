@@ -15,7 +15,7 @@ import AppKit
 import UIKit
 #endif
 
-public protocol SyntaxTextViewDelegate: class {
+public protocol SyntaxTextViewDelegate: AnyObject {
 
     func didChangeText(_ syntaxTextView: SyntaxTextView)
 
