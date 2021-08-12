@@ -29,7 +29,7 @@ public class SwiftLexer: SourceCodeRegexLexer {
 		
 		generators.append(regexGenerator("\\.[A-Za-z_]+\\w*", tokenType: .identifier))
 		
-		let keywords = "as associatedtype async await break case catch class continue convenience default defer deinit else enum extension fallthrough false fileprivate final for func get guard if import in init inout internal is lazy let mutating nil nonmutating open operator override private protocol public repeat required rethrows return required self set static struct subscript super switch throw throws true try typealias unowned var weak where while".components(separatedBy: " ")
+		let keywords = "as associatedtype async await break case catch class continue convenience default defer deinit do else enum extension fallthrough false fileprivate final for func get guard if import in init inout internal is lazy let mutating nil nonmutating open operator override private protocol public repeat required rethrows return required self set static struct subscript super switch throw throws true try typealias unowned var weak where while".components(separatedBy: " ")
 		
 		generators.append(keywordGenerator(keywords, tokenType: .keyword))
 		
