@@ -136,10 +136,8 @@ extension SourceCodeTextEditor {
         }
         
         public func didChangeText(_ syntaxTextView: SyntaxTextView) {
-            DispatchQueue.main.async {
-                self.parent.text = syntaxTextView.text
-            }
-            
+            self.parent.text = syntaxTextView.text
+
             // allow the client to decide on thread
             parent.custom.didChangeText(parent)
         }
