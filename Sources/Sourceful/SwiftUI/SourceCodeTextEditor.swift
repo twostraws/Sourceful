@@ -106,6 +106,7 @@ public struct SourceCodeTextEditor: _ViewRepresentable {
         wrappedView.delegate = context.coordinator
         wrappedView.theme = custom.theme()
         wrappedView.contentTextView.insertionPointColor = custom.insertionPointColor()
+        wrappedView.contentTextView.allowsUndo = false
         
         context.coordinator.wrappedView = wrappedView
         context.coordinator.wrappedView.text = text
