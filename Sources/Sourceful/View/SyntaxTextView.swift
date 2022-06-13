@@ -84,7 +84,10 @@ open class SyntaxTextView: _View {
 
     open override var tintColor: UIColor! {
         didSet {
-
+            #if targetEnvironment(macCatalyst)
+            let textInputTraits = textView.value(forKey: "textInputTraits") as? NSObject
+            textInputTraits?.setValue(tintColor, forKey: "insertionPointColor")
+            #endif
         }
     }
 
